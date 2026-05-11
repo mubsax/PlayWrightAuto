@@ -1,12 +1,13 @@
 from playwright.sync_api import Page, expect
+from locators.login_locators import LoginLocators
 
 class LoginPage:
     def __init__(self, page:Page):
         self.page = page
-        self.username_input = page.get_by_role("textbox", name="Email...")
-        self.password_input = page.get_by_role("textbox", name="Password...")
-        self.login_button = page.get_by_role("button", name="SIGN IN")
-        self.account_name = page.get_by_role("heading", name="Automation School")
+        self.username_input = page.locator(LoginLocators.USERNAME_INPUT)
+        self.password_input = page.locator(LoginLocators.PASSWORD_INPUT)
+        self.login_button = page.locator(LoginLocators.SIGN_IN_BTN)
+        self.account_name = page.locator(LoginLocators.ACCOUNT_NAME_HDR)
 
     def enter_username(self, username: str):
         self.username_input.fill(username)

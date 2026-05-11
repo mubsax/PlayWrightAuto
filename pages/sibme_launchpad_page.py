@@ -1,11 +1,12 @@
 from playwright.sync_api import Page, expect
+from locators.launchpad_locators import LaunchpadLocators
 
 class LaunchPage:
     def __init__(self, page:Page):
         self.page = page
-        self.multi_account = page.get_by_role("heading", name="Choose An Account")
-        self.main_account = page.get_by_role("heading", name="Automation School")
-        self.sub_account = page.get_by_role("heading", name="Test School")
+        self.multi_account = page.locator(LaunchpadLocators.CHOOSE_ACCOUNT_HDR)
+        self.main_account = page.locator(LaunchpadLocators.MAIN_ACCOUNT_HDR)
+        self.sub_account = page.locator(LaunchpadLocators.SUB_ACCOUNT_HDR)
 
     def launch_check(self):
         expect(self.multi_account).to_be_visible()

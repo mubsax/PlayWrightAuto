@@ -1,0 +1,10 @@
+class WorkspaceLocators:
+    AUTOMATION_SCHOOL_HDR = 'role=heading[name="Automation School"]'
+    HOME_LABEL = 'label:has-text("Home")'
+    WORKSPACE_LINK = 'role=link[name="Workspace"]'
+    MY_WORKSPACE_HDR = 'role=heading[name="My Workspace"]'
+    ADD_NEW_MENU_BTN = 'button[data-intercom-target="Plus-Button"]'
+    UPLOAD_VIDEO_ACTION_BTN = 'text=Upload Video'
+    FILE_INPUT_FIELD = 'input[type="file"]'
+    SUBMIT_UPLOAD_BTN = 'role=button[name="Upload"]'
+    SUCCESS_ALERT = 'role=alert[name="New Video Uploaded"]'
