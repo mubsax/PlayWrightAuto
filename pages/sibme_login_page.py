@@ -1,5 +1,6 @@
 from playwright.sync_api import Page, expect
 from locators.login_locators import LoginLocators
+from config.settings import Config
 
 class LoginPage:
     def __init__(self, page:Page):
@@ -19,12 +20,12 @@ class LoginPage:
         self.login_button.click()
 
     def login(self, username: str, password: str):
-        self.page.goto("https://app.sibme.com/home/login")
+        self.page.goto(Config.LOGIN_URL)
         self.enter_username(username)
         self.enter_password(password)
         self.click_login()
         self.page.wait_for_url("**/launchpad")
-        expect(self.account_name).to_be_visible()
+        expect(self.account_name).to_be_visible(timeout=Config.DEFAULT_TIMEOUT)
 
 
 
