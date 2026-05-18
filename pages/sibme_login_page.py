@@ -1,9 +1,11 @@
+import allure
 from playwright.sync_api import Page, expect
 from locators.login_locators import LoginLocators
 from config.settings import Config
 
+
 class LoginPage:
-    def __init__(self, page:Page):
+    def __init__(self, page: Page):
         self.page = page
         self.username_input = page.locator(LoginLocators.USERNAME_INPUT)
         self.password_input = page.locator(LoginLocators.PASSWORD_INPUT)
@@ -20,12 +22,10 @@ class LoginPage:
         self.login_button.click()
 
     def login(self, username: str, password: str):
-        self.page.goto(Config.LOGIN_URL)
-        self.enter_username(username)
-        self.enter_password(password)
-        self.click_login()
-        self.page.wait_for_url("**/launchpad")
-        expect(self.account_name).to_be_visible(timeout=Config.DEFAULT_TIMEOUT)
-
-
-
+        with allure.step("Perform end-to-end user login workflow"):
+            self.page.goto(Config.LOGIN_URL)
+            self.enter_username(username)
+            self.enter_password(password)
+            self.click_login()
+            self.page.wait_for_url("**/launchpad")
+            expect(self.account_name).to_be_visible(timeout=Config.DEFAULT_TIMEOUT)
