@@ -1,9 +1,13 @@
+import allure
 from pages.sibme_launchpad_page import LaunchPage
 from pages.sibme_workspace_page import WorkspacePage
 from playwright.sync_api import expect
 from pathlib import Path
 
-
+@allure.epic("Core Functionality")
+@allure.feature("Workspace Actions")
+@allure.story("Upload Video File")
+@allure.severity(allure.severity_level.CRITICAL)
 def test_vupload_workspace(launch_page):
     # Initialize Pages
     lp = LaunchPage(launch_page)

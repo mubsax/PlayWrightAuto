@@ -31,3 +31,15 @@ def launch_page(page):
 
     return page
 
+
+def pytest_sessionfinish(session, exitstatus):
+    """Automatically populates the Allure environment widget after the run."""
+    allure_results_dir = "my_allure_results"  # Change this if your results directory has a custom name
+
+    if os.path.exists(allure_results_dir):
+        env_properties_path = os.path.join(allure_results_dir, "environment.properties")
+        with open(env_properties_path, "w") as f:
+            f.write("Browser = Chromium\n")
+            f.write("Environment = Production\n")
+            f.write("Base.URL = https://app.sibme.com\n")
+            f.write("Runner = Pytest-Playwright\n")
